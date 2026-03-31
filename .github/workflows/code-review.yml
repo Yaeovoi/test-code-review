@@ -1,0 +1,28 @@
+name: Code Review
+
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
+
+jobs:
+  code-review:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Code Review
+        uses: Yaeovoi/openai-code-review@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          review-log-uri: ${{ secrets.CODE_REVIEW_LOG_URI }}
+          api-key: ${{ secrets.API_KEY }}
+          chat-model: glm-4-flash
+          notification-channel: feishu
+          feishu-app-id: ${{ secrets.FEISHU_APP_ID }}
+          feishu-app-secret: ${{ secrets.FEISHU_APP_SECRET }}
+          feishu-chat-id: ${{ secrets.FEISHU_CHAT_ID }}
