@@ -22,4 +22,4 @@
 | `API_KEY` | AI 模型 API Key |
 | `FEISHU_APP_ID` | 飞书应用 ID |
 | `FEISHU_APP_SECRET` | 飞书应用密钥 |
-| `FEISHU_CHAT_ID` | 飞书群聊 ID |
+| `FEISHU_CHAT_ID` | 飞书群聊 ID |// 测试代码审查功能 - Wed Apr  1 04:22:15 CST 2026
