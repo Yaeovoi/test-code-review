@@ -21,13 +21,10 @@ jobs:
           distribution: 'adopt'
           java-version: '11'
 
-      - name: Clone and Build SDK
+      - name: Download Code Review SDK
         run: |
-          git clone https://github.com/Yaeovoi/openai-code-review.git /tmp/sdk
-          cd /tmp/sdk
-          mvn clean install -DskipTests -q
-          mkdir -p $GITHUB_WORKSPACE/libs
-          cp /tmp/sdk/openai-code-review-sdk/target/openai-code-review-sdk-1.0.jar $GITHUB_WORKSPACE/libs/
+          mkdir -p ./libs
+          wget -O ./libs/openai-code-review-sdk-1.0.jar https://github.com/Yaeovoi/openai-code-review/releases/download/V1.0/openai-code-review-sdk-1.0.jar
 
       - name: Get commit info
         run: |
