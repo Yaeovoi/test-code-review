@@ -29,9 +29,11 @@ jobs:
       - name: Get commit info
         run: |
           echo "REPO_NAME=${GITHUB_REPOSITORY##*/}" >> $GITHUB_ENV
+          echo "REPO_FULL=${GITHUB_REPOSITORY}" >> $GITHUB_ENV
           echo "BRANCH_NAME=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
           echo "COMMIT_AUTHOR=$(git log -1 --pretty=format:'%an <%ae>')" >> $GITHUB_ENV
           echo "COMMIT_MESSAGE=$(git log -1 --pretty=format:'%s')" >> $GITHUB_ENV
+          echo "COMMIT_SHA=$(git log -1 --pretty=format:'%H')" >> $GITHUB_ENV
 
       - name: Run Code Review
         run: java -jar ./libs/openai-code-review-sdk-1.0.jar
@@ -39,9 +41,11 @@ jobs:
           GITHUB_REVIEW_LOG_URI: ${{ secrets.CODE_REVIEW_LOG_URI }}
           GITHUB_TOKEN: ${{ secrets.CODE_TOKEN }}
           COMMIT_PROJECT: ${{ env.REPO_NAME }}
+          COMMIT_REPO: ${{ env.REPO_FULL }}
           COMMIT_BRANCH: ${{ env.BRANCH_NAME }}
           COMMIT_AUTHOR: ${{ env.COMMIT_AUTHOR }}
           COMMIT_MESSAGE: ${{ env.COMMIT_MESSAGE }}
+          COMMIT_SHA: ${{ env.COMMIT_SHA }}
           # AI 模型配置
           API_KEY: ${{ secrets.API_KEY }}
           CHAT_MODEL: ${{ secrets.CHAT_MODEL }}
