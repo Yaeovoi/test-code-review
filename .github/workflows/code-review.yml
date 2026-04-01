@@ -24,7 +24,7 @@ jobs:
       - name: Download Code Review SDK
         run: |
           mkdir -p ./libs
-          wget -O ./libs/openai-code-review-sdk-1.0.jar https://github.com/Yaeovoi/openai-code-review/releases/download/V1.9/openai-code-review-sdk-1.0.jar
+          wget -O ./libs/openai-code-review-sdk-1.0.jar https://github.com/Yaeovoi/openai-code-review/releases/download/V1.10/openai-code-review-sdk-1.0.jar
 
       - name: Get commit info
         run: |
@@ -47,6 +47,7 @@ jobs:
           CHAT_MODEL: ${{ secrets.CHAT_MODEL }}
           API_HOST: ${{ secrets.API_HOST }}
           API_PROTOCOL: ${{ secrets.API_PROTOCOL }}
+          API_TIMEOUT: ${{ secrets.API_TIMEOUT }}  # 可选，默认 180 秒
           # 飞书配置
           NOTIFICATION_CHANNEL: feishu
           FEISHU_APP_ID: ${{ secrets.FEISHU_APP_ID }}
